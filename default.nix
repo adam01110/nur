@@ -16,7 +16,6 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
   bibata-cursors-classic = pkgs.callPackage ./pkgs/bibata-cursors-classic { };
   bibata-cursors-rose-pine = pkgs.callPackage ./pkgs/bibata-cursors-rose-pine { };
 }
