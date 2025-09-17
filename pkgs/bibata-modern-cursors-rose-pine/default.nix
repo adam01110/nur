@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "v${version}";
-    hash = "";
+    hash = "sha256-QGzSQMmmPY5gdEhzJpBuUM8E65GEtxdU7bWFnFSjpHQ=";
   };
 
   nativeBuildInputs = [

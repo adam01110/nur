@@ -7,14 +7,14 @@
   python3,
 }:
 
-stdenvNoCC.mkDerivation rec {
-  pname = "bibata-cursors-rose-pine";
+stdenvNoCC.mkDerivation {
+  pname = "bibata-cursors-rose-pine-hyprcursor";
   version = "2.0.7";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
-    rev = "v${version}";
+    rev = "HEAD";
     hash = "";
   };
 

@@ -7,15 +7,15 @@
   python3,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "bibata-cursors-classic";
   version = "2.0.7";
 
   src = fetchFromGitHub {
     owner = "adam01110";
-    repo = "Bibata_Cursor";
-    rev = "v${version}";
-    hash = "";
+    repo = "bibata-cursor";
+    rev = "HEAD";
+    hash = "sha256-QGzSQMmmPY5gdEhzJpBuUM8E65GEtxdU7bWFnFSjpHQ=";
   };
 
   nativeBuildInputs = [
