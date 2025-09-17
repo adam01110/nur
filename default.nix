@@ -16,6 +16,13 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  bibata-cursors-classic = pkgs.callPackage ./pkgs/bibata-cursors-classic { };
-  bibata-cursors-rose-pine = pkgs.callPackage ./pkgs/bibata-cursors-rose-pine { };
+  bibata-modern-cursors-classic = pkgs.callPackage ./pkgs/bibata-modern-cursors-classic { };
+  bibata-modern-cursors-classic-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-classic-hyprcursor
+      { };
+
+  bibata-modern-cursors-rose-pine = pkgs.callPackage ./pkgs/bibata-modern-cursors-rose-pine { };
+  bibata-modern-cursors-rose-pine-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-rose-pine-hyprcursor
+      { };
 }
