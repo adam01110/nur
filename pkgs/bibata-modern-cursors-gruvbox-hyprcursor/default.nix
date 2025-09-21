@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-dQmCgeCuFEzEFy5zzldAz4k4CFAtD1jCXSf5OqMAC3o=";
+    hash = "sha256-MJK7Kt/aARDFmwSa6NYtzqfJ+PTTNEUkI5DKKa/NSyE=";
   };
 
   bitmaps = fetchzip {
