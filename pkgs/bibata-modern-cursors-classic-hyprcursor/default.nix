@@ -6,11 +6,12 @@
   clickgen,
   hyprcursor,
   xcur2png,
+  bash,
 }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-classic-hyprcursor";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "adam01110";
@@ -28,6 +29,7 @@ stdenvNoCC.mkDerivation rec {
     clickgen
     hyprcursor
     xcur2png
+    bash
   ];
 
   buildPhase = ''

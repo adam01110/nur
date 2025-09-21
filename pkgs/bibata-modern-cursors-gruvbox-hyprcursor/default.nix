@@ -5,6 +5,7 @@
   fetchzip,
   clickgen,
   hyprcursor,
+  bash,
 }:
 
 stdenvNoCC.mkDerivation rec {
@@ -26,6 +27,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = [
     clickgen
     hyprcursor
+    bash
   ];
 
   buildPhase = ''
@@ -35,7 +37,7 @@ stdenvNoCC.mkDerivation rec {
     ctgen build.toml -d $bitmaps -n 'Bibata-Modern-Classic' -c 'Classic Bibata modern XCursors'
 
     # Build hyprcursors
-    ./hyprcursor-build.sh
+    bash hyprcursor-build.sh
 
     runHook postBuild
   '';

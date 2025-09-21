@@ -5,6 +5,7 @@
   fetchzip,
   clickgen,
   hyprcursor,
+  bash,
 }:
 
 stdenvNoCC.mkDerivation rec {
@@ -26,6 +27,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = [
     clickgen
     hyprcursor
+    bash
   ];
 
   buildPhase = ''
