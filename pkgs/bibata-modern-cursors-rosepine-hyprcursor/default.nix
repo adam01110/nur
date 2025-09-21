@@ -36,7 +36,7 @@ stdenvNoCC.mkDerivation rec {
     runHook preBuild
 
     # Build xcursors
-    ctgen build.toml -d $src/Bibata-Modern-RosePine -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
+    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
 
     # build hyprcursors
     bash hyprcursor-build.sh
