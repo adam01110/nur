@@ -11,7 +11,7 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-classic-hyprcursor";
-  version = "1.0.1";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "adam01110";
