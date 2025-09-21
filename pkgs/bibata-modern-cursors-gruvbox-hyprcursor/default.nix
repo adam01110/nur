@@ -5,6 +5,7 @@
   fetchzip,
   clickgen,
   hyprcursor,
+  xcur2png,
   bash,
 }:
 
@@ -27,6 +28,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = [
     clickgen
     hyprcursor
+    xcur2png
     bash
   ];
 
