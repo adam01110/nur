@@ -2,48 +2,40 @@
   lib,
   stdenvNoCC,
   fetchFromGitHub,
+  fetchzip,
   clickgen,
-  cbmp,
-  python3,
+  hyprcursor,
 }:
 
-stdenvNoCC.mkDerivation {
-  pname = "bibata-cursors-rose-pine-hyprcursor";
-  version = "2.0.7";
+stdenvNoCC.mkDerivation rec {
+  pname = "bibata-cursors-rosepine-hyprcursor";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
-    rev = "HEAD";
-    hash = "";
+    rev = "${version}";
+    hash = "sha256-kIKidw1vditpuxO1gVuZeUPdWBzkiksO/q2R/+DUdEc=";
+  };
+
+  bitmaps = fetchzip {
+    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-RosePine.zip";
+    hash = "sha256-jHV7/ZuXnTOUIVg1fltCG8xk1iXptqnYDY0o5b6x4W0=";
   };
 
   nativeBuildInputs = [
     clickgen
-    cbmp
-    python3
+    hyprcursor
   ];
-
-  patchPhase = ''
-    runHook prePatch
-
-    # Override render.json
-    cp ${./render.json} render.json
-
-    runHook postPatch
-  '';
 
   buildPhase = ''
     runHook preBuild
 
-    # Build bitmaps
-    cbmp render.json
-
     # Build xcursors
-    ctgen build.toml -p x11 -d bitmaps/Bibata-Modern-RosePine -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
+    ctgen build.toml -d $src/Bibata-Modern-RosePine -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
 
     # build hyprcursors
-    ./hyprcursor-build
+    bash hyprcursor-build.sh
 
     runHook postBuild
   '';
@@ -52,7 +44,7 @@ stdenvNoCC.mkDerivation {
     runHook preInstall
 
     install -dm 0755 $out/share/icons
-    cp -rf bin/* $out/share/icons/
+    cp -rf bin/*-hyprcursor $out/share/icons/
 
     runHook postInstall
   '';

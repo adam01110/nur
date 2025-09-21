@@ -2,45 +2,33 @@
   lib,
   stdenvNoCC,
   fetchFromGitHub,
+  fetchzip,
   clickgen,
-  cbmp,
-  python3,
 }:
 
 stdenvNoCC.mkDerivation rec {
-  pname = "bibata-cursors-rose-pine";
-  version = "2.0.7";
+  pname = "bibata-cursors-rosepine";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
-    rev = "v${version}";
-    hash = "sha256-QGzSQMmmPY5gdEhzJpBuUM8E65GEtxdU7bWFnFSjpHQ=";
+    rev = "${version}";
+    hash = "sha256-dQmCgeCuFEzEFy5zzldAz4k4CFAtD1jCXSf5OqMAC3o=";
   };
 
-  nativeBuildInputs = [
-    clickgen
-    cbmp
-    python3
-  ];
+  bitmaps = fetchzip {
+    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-RosePine.zip";
+    hash = "sha256-jHV7/ZuXnTOUIVg1fltCG8xk1iXptqnYDY0o5b6x4W0=";
+  };
 
-  patchPhase = ''
-    runHook prePatch
-
-    # Override render.json
-    cp ${./render.json} render.json
-
-    runHook postPatch
-  '';
+  nativeBuildInputs = [ clickgen ];
 
   buildPhase = ''
     runHook preBuild
 
-    # Build bitmaps
-    cbmp render.json
-
     # Build xcursors
-    ctgen build.toml -p x11 -d bitmaps/Bibata-Modern-RosePine -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
+    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
 
     runHook postBuild
   '';

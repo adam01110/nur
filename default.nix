@@ -10,23 +10,24 @@
   pkgs ? import <nixpkgs> { },
 }:
 
-let
-  bibataPkgs = {
-    clickgen = pkgs.clickgen;
-    cbmp = pkgs.cbmp;
-    python3 = pkgs.python3;
-    stdenvNoCC = pkgs.stdenvNoCC;
-  };
-in
 {
   # The `lib`, `modules`, and `overlays` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  bibata-modern-cursors-classic = pkgs.callPackage ./pkgs/bibata-modern-cursors-classic bibataPkgs;
-  bibata-modern-cursors-classic-hyprcursor = pkgs.callPackage ./pkgs/bibata-modern-cursors-classic-hyprcursor bibataPkgs;
+  bibata-modern-cursors-classic = pkgs.callPackage ./pkgs/bibata-modern-cursors-classic { };
+  bibata-modern-cursors-classic-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-classic-hyprcursor
+      { };
 
-  bibata-modern-cursors-rose-pine = pkgs.callPackage ./pkgs/bibata-modern-cursors-rose-pine bibataPkgs;
-  bibata-modern-cursors-rose-pine-hyprcursor = pkgs.callPackage ./pkgs/bibata-modern-cursors-rose-pine-hyprcursor bibataPkgs;
+  bibata-modern-cursors-rosepine = pkgs.callPackage ./pkgs/bibata-modern-cursors-rosepine { };
+  bibata-modern-cursors-rosepine-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-rosepine-hyprcursor
+      { };
+
+  bibata-modern-cursors-gruvbox = pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox { };
+  bibata-modern-cursors-gruvbox-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox-hyprcursor
+      { };
 }

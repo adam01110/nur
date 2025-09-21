@@ -2,45 +2,42 @@
   lib,
   stdenvNoCC,
   fetchFromGitHub,
+  fetchzip,
   clickgen,
-  cbmp,
-  python3,
 }:
 
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-classic";
-  version = "2.0.7";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
-    rev = "HEAD";
-    hash = "sha256-QGzSQMmmPY5gdEhzJpBuUM8E65GEtxdU7bWFnFSjpHQ=";
+    rev = "${version}";
+    hash = "sha256-dQmCgeCuFEzEFy5zzldAz4k4CFAtD1jCXSf5OqMAC3o=";
+  };
+
+  bitmaps = fetchzip {
+    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-Classic.zip";
+    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
   };
 
   nativeBuildInputs = [
     clickgen
-    cbmp
-    python3
+
   ];
 
   buildPhase = ''
     runHook preBuild
 
-    # Build bitmaps
-    cbmp render.json
-
     # Build xcursors
-    ctgen build.toml -p x11 -d bitmaps/Bibata-Modern-Classic -n 'Bibata-Modern-Classic' -c 'Classic Bibata modern XCursors'
+    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-Classic' -c 'Classic Bibata modern XCursors'
 
     runHook postBuild
   '';
 
   installPhase = ''
     runHook preInstall
-
-    # Build bitmaps
-    cbmp render.json
 
     install -dm 0755 $out/share/icons
     cp -rf bin/* $out/share/icons/
