@@ -11,13 +11,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-classic-hyprcursor";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-dQmCgeCuFEzEFy5zzldAz4k4CFAtD1jCXSf5OqMAC3o=";
+    hash = "sha256-06MrtOPDLnt185g3o9chbVTfBrXdUiB7O2NSFzsL2xk=";
   };
 
   bitmaps = fetchzip {

@@ -8,18 +8,18 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-rosepine";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-dQmCgeCuFEzEFy5zzldAz4k4CFAtD1jCXSf5OqMAC3o=";
+    hash = "sha256-06MrtOPDLnt185g3o9chbVTfBrXdUiB7O2NSFzsL2xk=";
   };
 
   bitmaps = fetchzip {
     url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-RosePine.zip";
-    hash = "sha256-jHV7/ZuXnTOUIVg1fltCG8xk1iXptqnYDY0o5b6x4W0=";
+    hash = "sha256-vUpZwfm/TqdZVeq6yg9ETYdLqsBzkzC/YkJH4CJbVdc=";
   };
 
   nativeBuildInputs = [ clickgen ];
