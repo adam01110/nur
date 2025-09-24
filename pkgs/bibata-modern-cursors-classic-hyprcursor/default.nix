@@ -17,12 +17,12 @@ stdenvNoCC.mkDerivation rec {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
+    hash = "sha256-bZkHYNU+HGdmIQCBHn70Ym3eYU1Uc7M2VA6TDNL2tLQ=";
   };
 
   bitmaps = fetchzip {
     url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-Classic.zip";
-    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
+    hash = "sha256-bZkHYNU+HGdmIQCBHn70Ym3eYU1Uc7M2VA6TDNL2tLQ=";
   };
 
   nativeBuildInputs = [
