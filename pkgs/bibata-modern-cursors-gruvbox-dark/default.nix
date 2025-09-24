@@ -4,42 +4,31 @@
   fetchFromGitHub,
   fetchzip,
   clickgen,
-  hyprcursor,
-  xcur2png,
-  bash,
 }:
 
 stdenvNoCC.mkDerivation rec {
-  pname = "bibata-cursors-gruvbox-hyprcursor";
-  version = "1.0.1";
+  pname = "bibata-cursors-gruvbox-dark";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-06MrtOPDLnt185g3o9chbVTfBrXdUiB7O2NSFzsL2xk=";
+    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
   };
 
   bitmaps = fetchzip {
-    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-Gruvbox.zip";
+    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-Gruvbox-Dark.zip";
     hash = "sha256-MHR5mhZJOXJsUvcJU41ZRe1dFFEcay93NbYllD4i4GM=";
   };
 
-  nativeBuildInputs = [
-    clickgen
-    hyprcursor
-    xcur2png
-    bash
-  ];
+  nativeBuildInputs = [ clickgen ];
 
   buildPhase = ''
     runHook preBuild
 
     # Build xcursors
-    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-Gruvbox' -c 'Gruvbox Bibata modern XCursors'
-
-    # Build hyprcursors
-    bash hyprcursor-build.sh
+    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-Gruvbox-Dark' -c 'Gruvbox dark Bibata modern XCursors'
 
     runHook postBuild
   '';
@@ -48,13 +37,13 @@ stdenvNoCC.mkDerivation rec {
     runHook preInstall
 
     install -dm 0755 $out/share/icons
-    cp -rf bin/*-hyprcursor $out/share/icons/
+    cp -rf bin/* $out/share/icons/
 
     runHook postInstall
   '';
 
   meta = with lib; {
-    description = "Bibata Modern Cursor (Gruvbox & Left Variant)";
+    description = "Bibata modern cursor (Gruvbox dark & left variant)";
     homepage = "https://github.com/adam01110/bibata-cursor";
     license = licenses.gpl3Only;
     platforms = platforms.linux;

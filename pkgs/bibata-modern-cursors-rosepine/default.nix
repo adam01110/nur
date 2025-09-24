@@ -8,17 +8,17 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-rosepine";
-  version = "1.0.1";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-06MrtOPDLnt185g3o9chbVTfBrXdUiB7O2NSFzsL2xk=";
+    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
   };
 
   bitmaps = fetchzip {
-    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-RosePine.zip";
+    url = "https://github.com/adam01110/bibata-cursor/releases/download/${version}/Bibata-Modern-Rosepine.zip";
     hash = "sha256-vUpZwfm/TqdZVeq6yg9ETYdLqsBzkzC/YkJH4CJbVdc=";
   };
 
@@ -28,7 +28,7 @@ stdenvNoCC.mkDerivation rec {
     runHook preBuild
 
     # Build xcursors
-    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-RosePine' -c 'Rose Pine Bibata modern XCursors'
+    ctgen build.toml -d $bitmaps -n 'Bibata-Modern-Rosepine' -c 'Rosepine Bibata modern XCursors'
 
     runHook postBuild
   '';
@@ -43,7 +43,7 @@ stdenvNoCC.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "Bibata Modern Cursor (RosePine & Left Variant)";
+    description = "Bibata modern cursor (Rosepine & left variant)";
     homepage = "https://github.com/adam01110/bibata-cursor";
     license = licenses.gpl3Only;
     platforms = platforms.linux;

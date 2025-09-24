@@ -11,13 +11,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-classic-hyprcursor";
-  version = "1.0.1";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-06MrtOPDLnt185g3o9chbVTfBrXdUiB7O2NSFzsL2xk=";
+    hash = "sha256-oV+igawdHK1wbAZhuACxvcNrddcpAoJ/eWJR88kSrvw=";
   };
 
   bitmaps = fetchzip {
@@ -54,7 +54,7 @@ stdenvNoCC.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "Bibata Modern Cursor (Classic & Left Variant)";
+    description = "Bibata modern cursor (Classic & left variant)";
     homepage = "https://github.com/adam01110/bibata-cursor";
     license = licenses.gpl3Only;
     platforms = platforms.linux;

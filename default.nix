@@ -26,8 +26,8 @@
     pkgs.callPackage ./pkgs/bibata-modern-cursors-rosepine-hyprcursor
       { };
 
-  bibata-modern-cursors-gruvbox = pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox { };
-  bibata-modern-cursors-gruvbox-hyprcursor =
-    pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox-hyprcursor
+  bibata-modern-cursors-gruvbox-dark = pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox-dark { };
+  bibata-modern-cursors-gruvbox-dark-hyprcursor =
+    pkgs.callPackage ./pkgs/bibata-modern-cursors-gruvbox-dark-hyprcursor
       { };
 }
