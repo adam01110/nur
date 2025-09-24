@@ -8,13 +8,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "bibata-cursors-rosepine";
-  version = "1.0.2";
+  version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "bibata-cursor";
     rev = "${version}";
-    hash = "sha256-kTLlJzui7eZAczBSdSGI798FfJ7kn/7VwmzhqlH5PUs=";
+    hash = "sha256-73DrcBnJQCmqgBs/Och034+AyexGeCULw0BDTJwMRjQ=";
   };
 
   bitmaps = fetchzip {
