@@ -77,7 +77,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.yams = {
+    home.packages = [ cfg.package ];
+
+    systemd.user.services.yams = mkIf pkgs.stdenv.hostPlatform.isLinux {
       Unit = {
         Description = "yams - Yet Another MPD Scrobbler";
         After = [ "mpd.service" ];
@@ -113,6 +115,34 @@ in
 
       Install = {
         WantedBy = [ "default.target" ];
+      };
+    };
+
+    launchd.agents.yams = mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      enable = true;
+      config = {
+        ProgramArguments =
+          let
+            args = [
+              (getExe cfg.package)
+              "-N"
+            ]
+            ++ optional (cfg.settings.scrobbling.threshold != null) "-t"
+            ++ optional (cfg.settings.scrobbling.threshold != null) (toString cfg.settings.scrobbling.threshold)
+            ++ optional cfg.settings.scrobbling.realTime "-r"
+            ++ optional cfg.settings.scrobbling.allowDuplicates "-d"
+            ++ optional cfg.settings.keepAlive "--keep-alive"
+            ++ optional cfg.settings.debug "-D"
+            ++ cfg.extraArgs;
+          in
+          args;
+        KeepAlive = true;
+        ProcessType = "Interactive";
+        EnvironmentVariables = {
+          NON_INTERACTIVE = "1";
+          MPD_HOST = cfg.settings.mpd.host;
+          MPD_PORT = toString cfg.settings.mpd.port;
+        };
       };
     };
   };
