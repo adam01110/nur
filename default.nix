@@ -15,7 +15,7 @@
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
-  hmModules = import ./hmModules; # Home Manager modules.
+  hmModules = import ./hm-modules; # Home Manager modules.
 
   bibata-modern-cursors-classic = pkgs.callPackage ./pkgs/bibata-modern-cursors-classic { };
   bibata-modern-cursors-classic-hyprcursor =
