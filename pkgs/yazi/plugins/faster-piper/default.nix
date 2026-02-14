@@ -5,7 +5,7 @@
 }:
 mkYaziPlugin rec {
   pname = "faster-piper.yazi";
-  version = "1.0";
+  version = "unstable-2026-02-02";
 
   src = fetchFromGitHub {
     owner = "alberti42";
