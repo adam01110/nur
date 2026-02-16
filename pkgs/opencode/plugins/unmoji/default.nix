@@ -5,13 +5,13 @@
 }:
 mkOpencodePlugin rec {
   pname = "unmoji";
-  version = "0.3.12";
+  version = "0.3.1";
 
   src = fetchFromCodeberg {
     owner = "bastiangx";
     repo = "opencode-${pname}";
     rev = version;
-    hash = "sha256-yL+e83vEEmtElRVdC9uIweFQ4CqtwqLUtitYRi7ncNc=";
+    hash = "sha256-5U6RSJTZBiCyQ7hKfQttcoH4iFUUfTMm2a/9xlM2ufw=";
   };
 
   dependencyHash = "sha256-mx5l95k3saYu7WYF7YDGziFZX9+YzZwk+UrogK1xlcQ=";
