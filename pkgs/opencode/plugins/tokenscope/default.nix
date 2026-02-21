@@ -10,7 +10,7 @@ mkOpencodePlugin rec {
   src = "${
     fetchFromGitHub {
       owner = "ramtinJ95";
-      repo = "opencode-tokenscope";
+      repo = "opencode-${pname}";
       rev = "v${version}";
       hash = "sha256-9VyeRo81DSmV9N/Xzm+hWnL0kbcAA9wWOYGwVmIC8o8=";
     }
