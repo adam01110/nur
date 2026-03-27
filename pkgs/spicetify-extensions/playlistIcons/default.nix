@@ -1,4 +1,8 @@
-{fetchFromGitHub, lib, mkSpicetifyExtension}:
+{
+  fetchFromGitHub,
+  lib,
+  mkSpicetifyExtension,
+}:
 mkSpicetifyExtension {
   src = fetchFromGitHub {
     owner = "jeroentvb";
@@ -13,6 +17,5 @@ mkSpicetifyExtension {
     description = "Add playlist icons to Spicetify";
     homepage = "https://github.com/jeroentvb/spicetify-playlist-icons";
     license = licenses.mit;
-    platforms = platforms.all;
   };
 }

@@ -1,4 +1,8 @@
-{fetchFromGitHub, lib, mkSpicetifyExtension}:
+{
+  fetchFromGitHub,
+  lib,
+  mkSpicetifyExtension,
+}:
 mkSpicetifyExtension {
   src = fetchFromGitHub {
     owner = "kyrie25";
@@ -13,6 +17,5 @@ mkSpicetifyExtension {
     description = "Clear Spotify cache from Spicetify";
     homepage = "https://github.com/kyrie25/Spicetify-Cache-Cleaner";
     license = licenses.gpl3Only;
-    platforms = platforms.all;
   };
 }

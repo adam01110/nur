@@ -1,4 +1,8 @@
-{fetchFromGitHub, lib, mkSpicetifyExtension}:
+{
+  fetchFromGitHub,
+  lib,
+  mkSpicetifyExtension,
+}:
 mkSpicetifyExtension {
   src = "${fetchFromGitHub {
     owner = "Kamiloo13";
@@ -13,6 +17,5 @@ mkSpicetifyExtension {
     description = "Show more lyrics providers in Spicetify";
     homepage = "https://github.com/Kamiloo13/spicetify-extensions";
     license = licenses.mit;
-    platforms = platforms.all;
   };
 }

@@ -11,11 +11,21 @@
     (lib)
     filterAttrs
     pipe
+    platforms
     ;
 
   root = ./.;
 
-  mkSpicetifyExtension = args: args;
+  mkSpicetifyExtension = args @ {meta ? {}, ...}:
+    args
+    // {
+      meta =
+        meta
+        // {
+          description = meta.description or "";
+          platforms = meta.platforms or platforms.all;
+        };
+    };
 
   call = name: callPackage (root + "/${name}") {inherit mkSpicetifyExtension;};
 in

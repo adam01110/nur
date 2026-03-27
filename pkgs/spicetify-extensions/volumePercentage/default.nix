@@ -1,4 +1,8 @@
-{fetchFromGitHub, lib, mkSpicetifyExtension}:
+{
+  fetchFromGitHub,
+  lib,
+  mkSpicetifyExtension,
+}:
 mkSpicetifyExtension {
   src = fetchFromGitHub {
     owner = "jeroentvb";
@@ -13,6 +17,5 @@ mkSpicetifyExtension {
     description = "Show volume percentage in Spicetify";
     homepage = "https://github.com/jeroentvb/spicetify-volume-percentage";
     license = licenses.mit;
-    platforms = platforms.all;
   };
 }
