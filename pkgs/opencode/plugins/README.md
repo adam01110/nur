@@ -160,6 +160,7 @@ programs.opencode.settings.plugin = [
 
 This repository also exports a Home Manager module that adds
 `programs.opencode.plugins.<name>.enable`,
+`programs.opencode.plugins.auto-resume.settings`,
 `programs.opencode.plugins.notifier.settings`, and
 `programs.opencode.plugins.extraPackages`.
 
@@ -190,6 +191,14 @@ available on the existing package set, then import
               };
             };
 
+            plugins.auto-resume = {
+              enable = true;
+              settings = {
+                chunkTimeoutMs = 45000;
+                maxRetries = 3;
+              };
+            };
+
             plugins.<name>.enable = true;
 
             plugins.extraPackages = [
@@ -213,6 +222,19 @@ Example with an existing file:
 
 ```nix
 programs.opencode.plugins.notifier.settings = ./opencode-notifier.json;
+```
+
+`programs.opencode.plugins.auto-resume.settings` accepts a JSON attrset/list/value
+and writes the plugin entry as:
+
+```nix
+[
+  "file://${pkgs.nur.repos.adam0.opencodePlugins.auto-resume}"
+  {
+    chunkTimeoutMs = 45000;
+    maxRetries = 3;
+  }
+]
 ```
 
 The module still writes package-root plugin URLs under the hood, so do not use
