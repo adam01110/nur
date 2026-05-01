@@ -14,7 +14,7 @@ mkOpencodePlugin rec {
   src = fetchFromGitHub {
     owner = "slkiser";
     repo = "opencode-${pname}";
-    rev = "1aeb06166dae289ea774571017d130adfbc4a1b1"; 
+    rev = "1aeb06166dae289ea774571017d130adfbc4a1b1";
     hash = "sha256-yrCZFfiibvycsWXmWwYCyiWjlEQun/g8G+iWhZYqfg8=";
   };
 
