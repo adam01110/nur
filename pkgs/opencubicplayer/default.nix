@@ -137,7 +137,7 @@ in
         --replace-fail 'playerdevices=devpALSA devpOSS devpCA devpSDL2 devpSDL devpNone devpDisk' \
                        'playerdevices=devpSDL3 devpALSA devpOSS devpNone devpDisk'
 
-      wrapProgram "$out/bin/ocp-curses" \
+      wrapProgram "$out/bin/ocp" \
         --set-default SDL_AUDIODRIVER pipewire
     '';
 
@@ -145,7 +145,7 @@ in
       description = "Text-based module and retro music player";
       homepage = "https://github.com/mywave82/opencubicplayer";
       license = lib.licenses.gpl2Plus;
-      mainProgram = "ocp-curses";
+      mainProgram = "ocp";
       platforms = lib.platforms.linux;
     };
   }
