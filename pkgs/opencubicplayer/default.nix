@@ -127,17 +127,12 @@ in
     enableParallelBuilding = true;
 
     postInstall = ''
-      substituteInPlace "$out/bin/ocp-curses" \
-        --replace-fail 'exec ocp ' "exec $out/bin/ocp "
-
-      substituteInPlace "$out/bin/ocp-curses" \
-        --replace-fail "exec $out/bin/ocp -dcurses " "exec $out/bin/ocp -spdevpSDL3 -dcurses "
-
       substituteInPlace "$out/share/ocp/etc/ocp.ini" \
         --replace-fail 'playerdevices=devpALSA devpOSS devpCA devpSDL2 devpSDL devpNone devpDisk' \
                        'playerdevices=devpSDL3 devpALSA devpOSS devpNone devpDisk'
 
       wrapProgram "$out/bin/ocp" \
+        --add-flags -spdevpSDL3 \
         --set-default SDL_AUDIODRIVER pipewire
     '';
 
