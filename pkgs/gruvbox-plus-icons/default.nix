@@ -18,7 +18,7 @@
 in
   stdenvNoCC.mkDerivation {
     pname = "gruvbox-plus-icons";
-    version = "0-unstable-2026-05-20";
+    version = "6.4.0-unstable-2026-05-20";
 
     src = fetchFromGitHub {
       owner = "SylEleuth";

@@ -60,7 +60,7 @@
 in
   stdenv.mkDerivation {
     pname = "opencubicplayer";
-    version = "0-unstable-2026-05-20";
+    version = "3.3.0-unstable-2026-05-20";
 
     src = fetchFromGitHub {
       owner = "mywave82";

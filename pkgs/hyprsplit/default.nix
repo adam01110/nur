@@ -7,7 +7,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "hyprsplit";
-  version = "0-unstable-2026-05-11";
+  version = "0.54.3-unstable-2026-05-11";
 
   src = fetchFromGitHub {
     owner = "shezdy";
