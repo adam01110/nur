@@ -14,8 +14,8 @@ mkOpencodePlugin rec {
   src = fetchFromGitHub {
     owner = "slkiser";
     repo = "opencode-${pname}";
-    rev = "2aff077a5442f29806cb6fa5e6a8826e1306b95c";
-    hash = "sha256-QrjmU96FbLAAl6HRTZyX8ZhHH3b2Qb8dji7LdI27iv4=";
+    rev = "43b2604ae8395acf78d5e7cbf9178e98050226aa";
+    hash = "sha256-AgpZcRhVjgZ2BmkRHMCF7qNjIWuBnbfng0QQUy9zVbQ=";
   };
 
   dependencyHash = "sha256-+ovDgEx5QI0ZooWoaOr/EAwo7qp6YGfw6DAPN+6mQuI=";

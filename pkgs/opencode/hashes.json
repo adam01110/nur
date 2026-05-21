@@ -1,5 +1,5 @@
 {
-  "version": "1.15.5-ocv.3.61",
+  "version": "1.15.5-ocv.3.62",
   "updater": {
     "type": "github-release-assets",
     "owner": "leohenon",
@@ -13,9 +13,9 @@
     }
   },
   "hashes": {
-    "aarch64-darwin": "sha256-vJh9MphFotxLh+5IXpqMycerqJKkaAdJFYnwdfGaoQ8=",
-    "aarch64-linux": "sha256-Use01sf7CD17OqIFESiqDik7ZS1Sb/drn//+++0DwDk=",
-    "x86_64-darwin": "sha256-kNhXEamqyxAflzROwJeEj33kcon2kEez3xfgCIcpt1k=",
-    "x86_64-linux": "sha256-90LIRVFAadoyMBEkCrNLcRNm+qucRbfWdpObKv/i+lE="
+    "aarch64-darwin": "sha256-ih+osyetcx1n0hq0lXOR3kM+7ubItiu4YuH/AkBGVI8=",
+    "aarch64-linux": "sha256-FO55IIxWSjVIKWbUJ0JS3t+h04BKuFtqb0/duCz/bgA=",
+    "x86_64-darwin": "sha256-14di//mShzM8tIkFTBu3AJTbFaLOJy2w9MNtQ7+ZCRw=",
+    "x86_64-linux": "sha256-2MByF75cDz/o3XLavpxDHRiLNLP6P5Czqg1GxFzFm0U="
   }
 }
