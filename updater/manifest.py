@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import tempfile
 import urllib.request
 from pathlib import Path
@@ -11,6 +12,7 @@ from .process import ROOT, run_json
 from .versions import should_block_downgrade, version_is_older
 
 DEFAULT_URL_TEMPLATE = "https://github.com/{{owner}}/{{repo}}/releases/download/{{tag}}/{{asset}}"
+logger = logging.getLogger(__name__)
 
 
 def manifest_has_release_asset_updater(path: Path) -> bool:
@@ -38,10 +40,12 @@ def list_release_asset_manifests() -> list[Path]:
 
 def latest_github_release_tag(owner: str, repo: str) -> str | None:
     url = f"https://api.github.com/repos/{owner}/{repo}/releases/latest"
+    logger.info("fetching latest GitHub release for %s/%s", owner, repo)
     try:
         with urllib.request.urlopen(url, timeout=30) as response:
             data = json.loads(response.read().decode())
-    except OSError:
+    except OSError as error:
+        logger.info("failed to fetch latest GitHub release for %s/%s: %s", owner, repo, error)
         return None
     return data.get("tag_name") or None
 
@@ -59,6 +63,8 @@ def latest_release_prefix_for_url(src_url: str | None) -> str | None:
 
 
 def update_release_asset_manifest(manifest: Path, *, dry_run: bool = False) -> UpdateResult:
+    name = str(manifest.relative_to(ROOT))
+    logger.info("updating release asset manifest %s", name)
     data = _read_manifest(manifest)
     updater = data.get("updater", {})
     owner = updater.get("owner")
@@ -69,7 +75,7 @@ def update_release_asset_manifest(manifest: Path, *, dry_run: bool = False) -> U
 
     if not owner or not repo or not assets:
         return UpdateResult(
-            str(manifest.relative_to(ROOT)),
+            name,
             "skipped",
             "incomplete release asset manifest",
         )
@@ -78,19 +84,19 @@ def update_release_asset_manifest(manifest: Path, *, dry_run: bool = False) -> U
     latest = strip_tag_prefix(latest_tag or "", tag_prefix)
     if not latest:
         return UpdateResult(
-            str(manifest.relative_to(ROOT)),
+            name,
             "failed",
             f"failed to determine latest release for {owner}/{repo}",
         )
     if should_block_downgrade(current, latest) and version_is_older(latest, current):
         return UpdateResult(
-            str(manifest.relative_to(ROOT)),
+            name,
             "skipped",
             f"apparent downgrade {current} -> {latest}",
         )
     if current == latest:
         return UpdateResult(
-            str(manifest.relative_to(ROOT)),
+            name,
             "skipped",
             f"already up to date at {current}",
         )
@@ -98,7 +104,7 @@ def update_release_asset_manifest(manifest: Path, *, dry_run: bool = False) -> U
     hashes = _prefetch_asset_hashes(data, latest_tag or latest)
     if dry_run:
         return UpdateResult(
-            str(manifest.relative_to(ROOT)),
+            name,
             "updated",
             f"manifest {current} -> {latest} (dry-run)",
         )
@@ -108,7 +114,7 @@ def update_release_asset_manifest(manifest: Path, *, dry_run: bool = False) -> U
     updated["hashes"] = hashes
     _atomic_write_json(manifest, updated)
     return UpdateResult(
-        str(manifest.relative_to(ROOT)),
+        name,
         "updated",
         f"release asset manifest {current} -> {latest}",
         [manifest],
@@ -134,6 +140,7 @@ def _prefetch_asset_hashes(data: dict[str, Any], tag: str) -> dict[str, str]:
     hashes: dict[str, str] = {}
     for system, asset in sorted(data.get("updater", {}).get("assets", {}).items()):
         url = render_asset_url(data, tag, asset)
+        logger.info("prefetching %s asset %s", system, asset)
         result = run_json(["nix", "store", "prefetch-file", "--json", "--hash-type", "sha256", url])
         hashes[system] = result["hash"]
     return hashes

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import re
 from pathlib import Path
 
@@ -11,12 +12,16 @@ from .transactions import FileTransaction, paths_owned_by
 from .validation import validate_transition
 from .versions import branch_parts
 
+logger = logging.getLogger(__name__)
+
 
 def update_package(
     ref: PackageRef, *, dry_run: bool = False, timeout: str | None = None
 ) -> UpdateResult:
+    logger.info("updating %s from %s", ref.attr_path, ref.file_path)
     manifest = package_has_manifest_updater(ref.file_path)
     if manifest:
+        logger.info("skipping %s: manifest updater owns %s", ref.attr_path, manifest)
         return UpdateResult(ref.attr_path, "skipped", f"manifest updater owns {manifest}")
 
     owned_roots = package_owned_roots(ref.file_path)
@@ -27,6 +32,7 @@ def update_package(
             _run_nix_update(ref, before.version_mode, timeout=timeout)
         except CommandError as error:
             transaction.restore()
+            logger.info("nix-update failed for %s:\n%s", ref.attr_path, error.details)
             return UpdateResult(ref.attr_path, "skipped", f"nix-update failed: {error}")
 
         after = read_state(ref.source_kind, ref.attrset, ref.attr)
@@ -55,6 +61,9 @@ def update_package(
                 _refresh_dependency_hash(ref, timeout=timeout)
             except CommandError as error:
                 transaction.restore()
+                logger.info(
+                    "dependencyHash refresh failed for %s:\n%s", ref.attr_path, error.details
+                )
                 return UpdateResult(
                     ref.attr_path, "failed", f"dependencyHash refresh failed: {error}"
                 )
