@@ -14,16 +14,14 @@
     # keep-sorted start
     mapAttrs
     readDir
-    removeAttrs
+    
     # keep-sorted end
     ;
   inherit
     (lib)
     # keep-sorted start
     filterAttrs
-    optionalString
     pipe
-    platforms
     # keep-sorted end
     ;
 
