@@ -16,7 +16,7 @@ mkGotifyPlugin rec {
     hash = "sha256-DvZ3/4SizpZAgy7IwPnOEtYRIuDpd1e1hgobAhc7r2I=";
   };
 
-  patchedSourceHash = "sha256-laDFcciOoXTv9aAuz+H9uVjeGzEowX8YaMrj8AZzhBE=";
+  patchedSourceHash = "sha256-K9k3yWidXotRi/Buo9bdDfA7QwdHLeFv2oEqqCAdqs8=";
   vendorHash = "sha256-wvFr3/Aqvz2TmdfNb213lOhEeZ4RUN5vy5Dfda+f4ZM=";
 
   meta = {

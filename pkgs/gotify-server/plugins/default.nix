@@ -58,7 +58,17 @@
       buildPhase = ''
         export HOME=$TMPDIR
         cp ${serverGoMod} server-go.mod
+
         go run github.com/gotify/plugin-api/cmd/gomod-cap@v1.0.0 -from server-go.mod -to go.mod
+
+        serverGoVersion=$(awk '/^go / {print $2; exit}' server-go.mod)
+        go mod edit -go="$serverGoVersion"
+
+        serverToolchain=$(awk '/^toolchain / {print $2; exit}' server-go.mod)
+        if [ -n "$serverToolchain" ]; then
+          go mod edit -toolchain="$serverToolchain"
+        fi
+
         rm server-go.mod
         go mod tidy
       '';
