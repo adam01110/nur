@@ -18,7 +18,7 @@
 in
   buildNpmPackage rec {
     pname = "rocksky-cli";
-    version = "0.8.0";
+    version = "bindings-v0.2.0";
 
     src = fetchFromGitHub {
       owner = "tsirysndr";
