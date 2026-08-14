@@ -51,6 +51,7 @@ in
     # keep-sorted end
 
     # keep-sorted start
+    ghosttyShaders = recurseCallPackage ./pkgs/ghostty-shaders;
     gotifyPlugins = recurseIntoAttrs (callPackage ./pkgs/gotify-server/plugins {inherit (allPackages) gotify-server;});
     hyprlandPlugins = recurseCallPackage ./pkgs/hyprland/plugins;
     spicetifyExtensions = recurseCallPackage ./pkgs/spicetify/extensions;
