@@ -109,10 +109,10 @@
       mkHyprcursor
       # keep-sorted start
       cursor
-      variantName
-      variant
-      paletteName
       palette
+      paletteName
+      variant
+      variantName
       # keep-sorted end
       ;
 
