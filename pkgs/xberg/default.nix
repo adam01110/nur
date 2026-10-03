@@ -2,6 +2,8 @@
   # keep-sorted start
   fetchFromGitHub,
   lib,
+  libheif,
+  pkg-config,
   rustPlatform,
   # keep-sorted end
 }:
@@ -20,12 +22,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoBuildFlags = ["--package" "xberg-cli"];
   cargoTestFlags = ["--package" "xberg-cli"];
 
-  # Keep document parsers without OCR, model runtimes, or PDFium.
+  nativeBuildInputs = [pkg-config];
+  buildInputs = [libheif];
+
+  # Enable all format parsers without OCR, model runtimes, or PDFium.
   buildNoDefaultFeatures = true;
   buildFeatures = [
     # keep-sorted start
     "core-cli"
-    "formats-no-heic"
+    "formats"
     # keep-sorted end
   ];
 
