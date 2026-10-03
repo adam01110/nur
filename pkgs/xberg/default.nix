@@ -22,6 +22,12 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoBuildFlags = ["--package" "xberg-cli"];
   cargoTestFlags = ["--package" "xberg-cli"];
 
+  # Isolate process-wide tracing state and ambient log filters during tests.
+  checkFlags = ["--test-threads=1"];
+  preCheck = ''
+    unset RUST_LOG
+  '';
+
   nativeBuildInputs = [pkg-config];
   buildInputs = [libheif];
 
@@ -31,6 +37,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     # keep-sorted start
     "core-cli"
     "formats"
+    # Format tests inspect this subset flag even when all formats are enabled.
+    "formats-no-heic"
     # keep-sorted end
   ];
 
