@@ -48,7 +48,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     export HOME="$TMPDIR"
     $out/bin/xberg --version
     printf '%s\n' '<html><body>DocumentExtractionSentinel</body></html>' > sample.html
-    $out/bin/xberg extract sample.html --output-format text | grep -F DocumentExtractionSentinel
+    $out/bin/xberg extract sample.html --content-format plain | grep -F DocumentExtractionSentinel
     runHook postInstallCheck
   '';
 
