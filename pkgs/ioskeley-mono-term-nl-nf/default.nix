@@ -7,12 +7,15 @@
   spacedFamilyName ? "Ioskeley Mono Term",
   stdenvNoCC,
   # keep-sorted end
-}:
+}: let
+  # NixOS 26.05 exposes the normal-width variant under the older name.
+  termNerdFont = ioskeley-mono.term-nf or ioskeley-mono.normal-term-NF;
+in
 stdenvNoCC.mkDerivation {
   pname = "ioskeley-mono-term-nl-nf";
-  inherit (ioskeley-mono.term-nf) version;
+  inherit (termNerdFont) version;
 
-  src = ioskeley-mono.term-nf;
+  src = termNerdFont;
   dontUnpack = true;
   dontBuild = true;
 
