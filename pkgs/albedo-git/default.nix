@@ -68,7 +68,7 @@
       '';
 
     passthru = {
-      updateSourceFiles = ["manifest.toml"];
+      updateSourceFiles = ["apps/albedo/manifest.toml"];
       daemon = server;
       tests.notices = callPackage ./notices-test.nix {
         inherit package;
